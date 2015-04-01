@@ -1,0 +1,35 @@
+{
+  "name": "machinepack-pubnub",
+  "version": "1.0.0",
+  "description": "Publish and subscribe messages using Pubnub's JSON/JSONP REST API with HTTP GET",
+  "scripts": {
+    "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
+  },
+  "keywords": [
+    "Pubnub",
+    "machines",
+    "machinepack"
+  ],
+  "author": "Anmol Agrawal",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^3.6.0",
+    "machine": "^3.0.0",
+    "machinepack-http": "^2.0.1"
+  },
+  "devDependencies": {
+    "test-machinepack-mocha": "^0.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anmolonruby/machinepack-pubnub.git"
+  },
+  "machinepack": {
+    "friendlyName": "Pubnub",
+    "machineDir": "machines/",
+    "machines": [
+      "publish-message",
+      "subscribe-message"
+    ]
+  }
+}
