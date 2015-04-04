@@ -1,26 +1,16 @@
 module.exports = {
-  friendlyName: 'Publish message',
-  description: 'Publish a message through HTTP GET',
+  friendlyName: 'History',
+  description: 'Load publish history of a channel through GET method',
   extendedDescription: '',
   inputs: {
-    pubKey: {
-      example: 'demo',
-      description: 'Publish key from your PubNub account',
-      required: true
-    },
     subKey: {
       example: 'demo',
       description: 'Subscribe key from your PubNub account',
       required: true
     },
-    signature: {
-      example: '0',
-      description: 'Signature',
-      required: true
-    },
     channel: {
       example: 'hello_world',
-      description: 'Channel to which you want to publish the messages',
+      description: 'Channel to which you want to subscribe messages from',
       required: true
     },
     callback: {
@@ -28,35 +18,31 @@ module.exports = {
       description: 'Callback',
       required: true
     },
-    message: {
-      example: 'demo',
-      description: 'Message you want to send to your channel',
+    limit: {
+      example: '10',
+      description: 'Limit',
       required: true
     },
   },
   defaultExit: 'success',
+  
   exits: {
-     error: {
-        description: 'Unexpected error occurred.'
-      },
-      wrongOrNoKey: {
-        description: 'Invalid or unprovided API key. All calls must have a key.'
-      },
-      success: {
-        description: 'Returns a JSON object of message sent',
-        example: '[1,"Sent","14279165931593790"]'
-      }
+    error: {
+      description: 'Unexpected error occurred.',
+    },
+    success: {
+      description: 'Done.',
+    },
   },
-
+  
   fn: function (inputs,exits) {
-
     var URL = require('url');
     var QS = require('querystring');
     var _ = require('lodash');
     var Http = require('machinepack-http');
 
     Http.sendHttpRequest({
-      baseUrl: 'http://pubsub.pubnub.com/publish/' + inputs.pubKey + '/' + inputs.subKey + '/' + inputs.signature + '/' + inputs.channel + '/' + inputs.callback + '/"' + encodeURI(inputs.message) + '"',
+      baseUrl: 'http://pubsub.pubnub.com/history/' + inputs.subKey + '/' + inputs.channel + '/' + inputs.callback + '/' + inputs.limit ,
       url: '',
       method: 'get',
     }).exec({

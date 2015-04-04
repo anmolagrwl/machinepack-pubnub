@@ -29,7 +29,8 @@
     "machineDir": "machines/",
     "machines": [
       "publish-message",
-      "subscribe-message"
+      "subscribe-message",
+      "history"
     ]
   }
 }
